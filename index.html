@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Korean C. elegans Meeting 2027</title>
+  <meta name="description" content="제33회 한국분자세포생물학회 예쁜꼬마선충분과 학술발표회 — 등록, 프로그램, 숙소 안내" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314513a'/%3E%3Cpath d='M7 20c3-6 6 2 9-4s6 2 9-4' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top">Korean <i>C. elegans</i> Meeting <b>2027</b></a>
+    <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" id="navToggle"><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#dates">일정</a>
+      <a href="#register">등록</a>
+      <a href="#labs">신청 현황</a>
+      <a href="#program">프로그램</a>
+      <a href="#venue">장소·숙소</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <p class="hero-org">
+        한국분자세포생물학회 예쁜꼬마선충분과
+        <span>Korean Society for Molecular and Cellular Biology · <i>C. elegans</i> Division</span>
+      </p>
+      <h1 class="hero-title" data-bind-html="title_en_html">The 33rd Korean <i>C. elegans</i> Meeting</h1>
+      <p class="hero-ko" data-bind="title_ko"></p>
+
+      <table class="hero-meta">
+        <tbody>
+          <tr><th scope="row">일시<span>Date</span></th><td data-bind="date_range"></td></tr>
+          <tr><th scope="row">장소<span>Venue</span></th><td data-bind="venue"></td></tr>
+          <tr><th scope="row">사전등록 마감<span>Registration</span></th><td><span data-bind="deadline_register_fmt"></span></td></tr>
+          <tr><th scope="row">개최까지<span>Countdown</span></th><td id="dday">D–</td></tr>
+        </tbody>
+      </table>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#register" data-href="lab_register_url" target="_blank" rel="noopener">연구실 참석자 등록</a>
+        <a class="btn btn-outline" data-href="register_url" target="_blank" rel="noopener">KSMCB 사전등록</a>
+        <a class="btn btn-outline" href="#program">프로그램 보기</a>
+      </div>
+      <p class="data-note" id="dataBadge"></p>
+    </div>
+  </section>
+
+  <div class="ticker" id="ticker" hidden>
+    <span class="ticker-tag">공지</span>
+    <a href="#notices" class="ticker-text" id="tickerText"></a>
+  </div>
+
+  <main id="main">
+    <!-- 01 일정 -->
+    <section class="section" id="dates">
+      <header class="sec-head">
+        <span class="sec-no">1</span>
+        <h2>주요 일정 <em>Key dates</em></h2>
+      </header>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- 02 등록 -->
+    <section class="section" id="register">
+      <header class="sec-head">
+        <span class="sec-no">2</span>
+        <h2>등록 안내 <em>How to register</em></h2>
+        <p class="sec-lede">랩 단위로 한 번, 개인별로 한 번. 발표자는 초록만 더 내면 끝납니다.</p>
+      </header>
+      <div class="steps">
+        <article class="step">
+          <span class="step-n">1</span>
+          <h3>방장이 연구실 등록</h3>
+          <p>연구실마다 <b>방장(연락 담당자) 한 분</b>이 등록하면 <b>연구실 전용 구글 시트</b>가 바로 열립니다 (링크는 메일로도 발송). 참석자 이름·직책·숙박 여부를 한 줄씩 입력하면 자동으로 집계되고, 발표자별 <b>초록 제출 여부</b>도 같은 시트에 표시됩니다.</p>
+          <p class="step-due">마감 <span data-bind="deadline_lab_fmt"></span></p>
+          <a class="link-arrow" href="#register" data-href="lab_register_url" target="_blank" rel="noopener">연구실 참석자 등록 ↗</a>
+        </article>
+        <article class="step">
+          <span class="step-n">2</span>
+          <h3>KSMCB 개인 사전등록</h3>
+          <p>참가비 결제와 참가확인증은 한국분자세포생물학회 등록 페이지에서 <b>개인별로</b> 진행합니다.</p>
+          <p class="step-due">마감 <span data-bind="deadline_register_fmt"></span></p>
+          <a class="link-arrow" data-href="register_url" target="_blank" rel="noopener">등록 페이지 ↗</a>
+        </article>
+        <article class="step">
+          <span class="step-n">3</span>
+          <h3>초록 제출 <small>(발표자)</small></h3>
+          <p>구두(연구실별 2명까지)·포스터 발표자는 아래 폼 또는 랩 시트 맨 위 링크로 초록을 제출해 주세요. 제출된 초록은 그대로 초록집에 실립니다.</p>
+          <p class="step-due">마감 <span data-bind="deadline_abstract_fmt"></span></p>
+          <a class="link-arrow" data-href="abstract_url" target="_blank" rel="noopener">초록 제출 폼 ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 참석 신청 현황 (전체 집계만 공개) -->
+    <section class="section" id="labs">
+      <header class="sec-head">
+        <span class="sec-no">3</span>
+        <h2>참석 신청 현황 <em>Registration status</em></h2>
+        <p class="sec-lede">전체 집계만 공개합니다. 랩별 인원은 공개하지 않습니다.</p>
+      </header>
+      <div class="stats" id="labStats"></div>
+      <div class="check-note">
+        <h3>우리 랩 입력이 반영됐는지 확인하려면</h3>
+        <p>방장님이 받은 <b>랩 전용 시트</b>의 오른쪽 위에 <span class="receipt">✔ 마지막 반영 12/3 14:00 · 5명</span> 처럼 반영 시각과 인원이 표시됩니다. 이 표시는 해당 랩 시트에서만 보입니다.</p>
+      </div>
+    </section>
+
+    <!-- 04 프로그램 -->
+    <section class="section" id="program">
+      <header class="sec-head">
+        <span class="sec-no">4</span>
+        <h2>프로그램 <em>Program</em></h2>
+        <div class="sec-tools">
+          <a class="btn-small" data-href="abstract_book_url" target="_blank" rel="noopener" hidden>초록집 PDF ↗</a>
+          <button class="btn-small" onclick="window.print()">인쇄 / PDF</button>
+        </div>
+      </header>
+      <div class="day-tabs" id="dayTabs" role="tablist"></div>
+      <div class="program" id="programList"></div>
+    </section>
+
+    <!-- 05 장소 숙소 -->
+    <section class="section" id="venue">
+      <header class="sec-head">
+        <span class="sec-no">5</span>
+        <h2>장소 · 숙소 <em>Venue &amp; stay</em></h2>
+      </header>
+      <div class="venue-grid">
+        <article class="plate">
+          <h3 data-bind="venue"></h3>
+          <p data-bind="venue_address"></p>
+          <a class="link-arrow" data-href="map_url" target="_blank" rel="noopener">지도에서 보기 ↗</a>
+        </article>
+        <article class="stay">
+          <h3>숙소 배정 원칙</h3>
+          <ul class="rooms">
+            <li><span class="room-tag">PI</span><div><b>Standard Twin</b> · 1인 1실</div></li>
+            <li><span class="room-tag">포닥·학생·연구원</span><div><b>Deluxe Ondol</b> · 같은 성별 2인 1실, 같은 랩 우선</div></li>
+          </ul>
+          <p class="muted">체크인·아웃: <span data-bind="checkin"></span></p>
+          <p class="muted">배정 결과는 학회 약 1주 전 <b>방장님께 개별 안내</b>됩니다. 숙박 필요 여부는 랩 시트의 ‘숙박’ 칸으로 받습니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 06 공지 · FAQ -->
+    <section class="section two-col" id="faq">
+      <div id="notices">
+        <header class="sec-head">
+          <span class="sec-no">6</span>
+          <h2>공지 <em>Notices</em></h2>
+        </header>
+        <ul class="notices" id="noticeList"></ul>
+      </div>
+      <div>
+        <header class="sec-head">
+          <span class="sec-no">7</span>
+          <h2>자주 묻는 질문 <em>FAQ</em></h2>
+        </header>
+        <div class="faq" id="faqList"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <p class="foot-title" data-bind="organizer"></p>
+      <p class="muted-dark">공동개최 · <span data-bind="cohosts"></span></p>
+    </div>
+    <div class="foot-contact">
+      <span class="mono">Contact</span>
+      <a data-href="contact_email" data-mailto id="mail"></a>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="sample-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
