@@ -112,13 +112,22 @@
       { k: "deadline_register", label: "KSMCB 사전등록 마감", sub: "개인별 등록 · 결제" },
       { k: "date_start", label: "학술발표회 개최", sub: s.venue || "", event: true },
     ]
-      .map((it) => ({ ...it, d: parseDate(s[it.k]) }))
-      .filter((it) => it.d)
-      .sort((a, b) => a.d - b.d);
+      .map((it) => ({ ...it, d: parseDate(s[it.k]) }));
+    // 날짜가 정해진 항목은 날짜순, 사전등록 마감처럼 '추후 공지'인 항목은 개최일 바로 앞에
+    const dated = items.filter((it) => it.d).sort((a, b) => a.d - b.d);
+    const tba = items.filter((it) => !it.d && it.k === "deadline_register");
+    const ev = dated.findIndex((it) => it.event);
+    if (tba.length) dated.splice(ev < 0 ? dated.length : ev, 0, ...tba);
+    items.length = 0; items.push(...dated);
     const t = today();
-    const nextIdx = items.findIndex((it) => it.d >= t);
+    const nextIdx = items.findIndex((it) => it.d && it.d >= t);
     $("#timeline").innerHTML = items
       .map((it, i) => {
+        if (!it.d) return `<li class="tl tba">
+          <div class="tl-date">추후<small>TBA</small></div>
+          <p class="tl-label">${esc(it.label)}</p>
+          <div class="tl-sub">${esc(it.sub)} · 추후 공지</div>
+        </li>`;
         const cls = ["tl", it.d < t ? "past" : "", i === nextIdx ? "next" : "", it.event ? "event" : ""].join(" ");
         const left = Math.round((it.d - t) / 86400000);
         const flag = i === nextIdx ? `<span class="tl-flag">${left === 0 ? "오늘" : `${left}일 남음`}</span>` : "";
