@@ -392,3 +392,13 @@ a.btn-small { text-decoration: none; }
 .p-row.t-session { background: var(--tint); border-color: var(--navy-3); }
 .p-row.t-session .p-title, .p-row.t-keynote .p-title { font-family: var(--f-body); font-weight: 700; }
 .footer { background: #0f3b2b; }
+
+/* ---------- 초록 제출 ---------- */
+.abs-rules { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); border: 1px solid var(--rule); background: var(--paper); }
+.abs-rules li { padding: 16px 20px; color: var(--ink-2); font-size: 15px; border-right: 1px solid var(--rule-2); border-bottom: 1px solid var(--rule-2); }
+.abs-rules li > b:first-child { display: block; color: var(--navy); font-family: var(--f-serif-ko); font-size: 16px; margin-bottom: 4px; }
+.abs-form { border: 1px solid var(--rule); background: var(--paper); }
+.abs-form iframe { display: block; width: 100%; height: 1400px; border: 0; }
+.abs-alt { margin: 0; padding: 10px 16px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); text-align: right; }
+.abs-alt a { color: var(--navy); }
+@media (max-width: 640px) { .abs-form iframe { height: 1700px; } }

@@ -7,8 +7,6 @@
  * ⚠️ '참가자', '랩목록', '숙소배정' 탭은 절대 게시하지 마세요 (개인정보 · 랩별 인원).
  */
 window.SITE_CONFIG = {
-  // 연구실 참석자 등록(register.html)이 부르는 Apps Script 웹 앱 주소 (…/exec). 재배포해도 '배포 관리 → 새 버전'이면 주소 그대로
-  register_api: "https://script.google.com/macros/s/AKfycbyxoCzLYdN9C5NDYBR0hM5t1arjTekssyMBXUlgElsJH9VqmkooHVyzdPmCcV15RzZJ/exec",
   csv: {
     settings: "", // '설정' 탭 (전체 집계 포함)
     program: "",  // '프로그램' 탭

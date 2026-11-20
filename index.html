@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400..600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=3" />
 </head>
 <body>
   <a class="skip" href="#main">본문 바로가기</a>
@@ -20,7 +20,7 @@
     <nav class="nav-links" id="navLinks">
       <a href="#dates">일정</a>
       <a href="#register">등록</a>
-      <a href="#labs">신청 현황</a>
+      <a href="#abstract">초록 제출</a>
       <a href="#program">프로그램</a>
       <a href="#venue">장소·숙소</a>
       <a href="#faq">FAQ</a>
@@ -46,7 +46,7 @@
       </table>
 
       <div class="hero-cta">
-        <a class="btn btn-primary" href="register.html">연구실 참석자 등록</a>
+        <a class="btn btn-primary" href="#abstract">초록 제출</a>
         <a class="btn btn-outline" data-href="register_url" target="_blank" rel="noopener">KSMCB 사전등록</a>
         <a class="btn btn-outline" href="#program">프로그램 보기</a>
       </div>
@@ -79,10 +79,9 @@
       <div class="steps">
         <article class="step">
           <span class="step-n">1</span>
-          <h3>방장이 연구실 등록</h3>
-          <p>연구실마다 <b>방장(연락 담당자) 한 분</b>이 등록하면 <b>연구실 전용 구글 시트</b>가 바로 열립니다 (링크는 메일로도 발송). 참석자 이름·직책·숙박 여부를 한 줄씩 입력하면 자동으로 집계되고, 발표자별 <b>초록 제출 여부</b>도 같은 시트에 표시됩니다.</p>
+          <h3>연구실 참석자 명단</h3>
+          <p>참석자 이름·직책·숙박 여부 등은 <b>연구실별 엑셀 양식</b>으로 받습니다. 양식은 각 연구실에 메일로 따로 안내드리며, 작성해서 회신해 주시면 됩니다.</p>
           <p class="step-due">마감 <span data-bind="deadline_lab_fmt"></span></p>
-          <a class="link-arrow" href="register.html">연구실 참석자 등록 →</a>
         </article>
         <article class="step">
           <span class="step-n">2</span>
@@ -94,24 +93,29 @@
         <article class="step">
           <span class="step-n">3</span>
           <h3>초록 제출 <small>(발표자)</small></h3>
-          <p>구두(연구실별 2명까지)·포스터 발표자는 아래 폼 또는 랩 시트 맨 위 링크로 초록을 제출해 주세요. 제출된 초록은 그대로 초록집에 실립니다.</p>
+          <p>구두(연구실별 2명까지)·포스터 발표자는 이 홈페이지의 <b>초록 제출</b>에서 제출해 주세요. 제출된 초록은 그대로 초록집에 실립니다.</p>
           <p class="step-due">마감 <span data-bind="deadline_abstract_fmt"></span></p>
-          <a class="link-arrow" data-href="abstract_url" target="_blank" rel="noopener">초록 제출 폼 ↗</a>
+          <a class="link-arrow" href="#abstract">초록 제출하기 →</a>
         </article>
       </div>
     </section>
 
-    <!-- 03 참석 신청 현황 (전체 집계만 공개) -->
-    <section class="section" id="labs">
+    <!-- 03 초록 제출 -->
+    <section class="section" id="abstract">
       <header class="sec-head">
         <span class="sec-no">3</span>
-        <h2>참석 신청 현황 <em>Registration status</em></h2>
-        <p class="sec-lede">전체 집계만 공개합니다. 랩별 인원은 공개하지 않습니다.</p>
+        <h2>초록 제출 <em>Abstract submission</em></h2>
+        <p class="sec-lede">구두·포스터 발표자는 아래 폼으로 초록을 제출해 주세요. 마감 <b data-bind="deadline_abstract_fmt"></b></p>
       </header>
-      <div class="stats" id="labStats"></div>
-      <div class="check-note">
-        <h3>우리 랩 입력이 반영됐는지 확인하려면</h3>
-        <p>방장님이 받은 <b>랩 전용 시트</b>의 오른쪽 위에 <span class="receipt">✔ 마지막 반영 12/3 14:00 · 5명</span> 처럼 반영 시각과 인원이 표시됩니다. 이 표시는 해당 랩 시트에서만 보입니다.</p>
+      <ul class="abs-rules">
+        <li><b>발표 형태</b>구두는 <b>연구실별 2명까지</b>, 포스터는 제한이 없습니다. 최종 발표 형태는 조직위원회가 정해 안내합니다.</li>
+        <li><b>한국어 세션</b>둘째 날 오전에 한국어 발표 세션이 있습니다. 폼에서 희망 여부를 골라 주세요.</li>
+        <li><b>분량</b>발표자 1인당 1편, 본문은 공백 포함 2,000자(영문 약 300단어) 이내입니다.</li>
+        <li><b>수정</b>제출하면 확인 메일이 갑니다. 메일의 링크로 마감 전까지 수정할 수 있습니다.</li>
+        <li><b>초록집</b>제출한 내용이 그대로 초록집에 실립니다. 오탈자를 꼭 확인해 주세요.</li>
+      </ul>
+      <div class="abs-form" id="absForm">
+        <p class="empty">초록 제출 폼은 접수가 시작되면 이곳에 열립니다.</p>
       </div>
     </section>
 
@@ -148,7 +152,7 @@
             <li><span class="room-tag">포닥·학생·연구원</span><div><b>Deluxe Ondol</b> · 같은 성별 2인 1실, 같은 랩 우선</div></li>
           </ul>
           <p class="muted">체크인·아웃: <span data-bind="checkin"></span></p>
-          <p class="muted">배정 결과는 학회 약 1주 전 <b>방장님께 개별 안내</b>됩니다. 숙박 필요 여부는 랩 시트의 ‘숙박’ 칸으로 받습니다.</p>
+          <p class="muted">배정 결과는 학회 약 1주 전 <b>방장님께 개별 안내</b>됩니다. 숙박 필요 여부는 참석자 명단(엑셀)의 ‘숙박’ 칸으로 받습니다.</p>
         </article>
       </div>
     </section>
@@ -183,8 +187,8 @@
     </div>
   </footer>
 
-  <script src="config.js?v=2"></script>
-  <script src="sample-data.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="config.js?v=3"></script>
+  <script src="sample-data.js?v=3"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

@@ -107,7 +107,7 @@
 
   function renderTimeline(s) {
     const items = [
-      { k: "deadline_lab", label: "랩별 참석자 입력 마감", sub: "방장 · 랩 전용 시트" },
+      { k: "deadline_lab", label: "참석자 명단 제출 마감", sub: "연구실별 엑셀" },
       { k: "deadline_abstract", label: "초록 제출 마감", sub: "구두 · 포스터 발표자" },
       { k: "deadline_register", label: "KSMCB 사전등록 마감", sub: "개인별 등록 · 결제" },
       { k: "date_start", label: "학술발표회 개최", sub: s.venue || "", event: true },
@@ -160,18 +160,18 @@
       .join("");
   }
 
-  /* ---------- 참석 신청 현황 (전체 집계만 — 랩별 인원은 공개하지 않음) ---------- */
-  function renderStats(s) {
-    const n = (x) => parseInt(x, 10) || 0;
-    const total = n(s.stat_labs_total), done = n(s.stat_labs_submitted), people = n(s.stat_attendees);
-    const pct = total ? Math.round((done / total) * 100) : 0;
-    const dl = parseDate(s.deadline_lab);
-    const left = dl ? Math.round((dl - today()) / 86400000) : null;
-    const leftHtml = left == null ? "–" : left > 0 ? `${left}<small>일</small>` : left === 0 ? "오늘" : "마감";
-    $("#labStats").innerHTML = `
-      <div class="stat"><div class="stat-v">${pct}<small>%</small></div><div class="stat-l">입력을 마친 랩 (${done} / ${total})</div><div class="bar"><i style="width:${pct}%"></i></div></div>
-      <div class="stat"><div class="stat-v">${people}</div><div class="stat-l">전체 참석 예정 인원</div></div>
-      <div class="stat"><div class="stat-v">${leftHtml}</div><div class="stat-l">랩 입력 마감까지 · ${esc(fmtMD(dl))}</div></div>`;
+  /* ---------- 초록 제출 폼 (구글 폼을 페이지 안에 넣음) ---------- */
+  function renderAbstract(s) {
+    const box = $("#absForm");
+    const url = String(s.abstract_url || "").trim();
+    const m = url.match(/^https:\/\/docs\.google\.com\/forms\/[^?#]+/);
+    if (m) {
+      const src = m[0].replace(/\/(edit|viewform)?$/, "") + "/viewform?embedded=true";
+      box.innerHTML = `<iframe src="${esc(src)}" title="초록 제출 폼" loading="lazy">불러오는 중…</iframe>
+        <p class="abs-alt">폼이 보이지 않으면 <a href="${esc(url)}" target="_blank" rel="noopener">새 창에서 열기 ↗</a></p>`;
+    } else if (/^https?:\/\/(forms\.gle|goo\.gl)\/\w+/.test(url)) {
+      box.innerHTML = `<p class="empty"><a class="btn btn-primary" href="${esc(url)}" target="_blank" rel="noopener">초록 제출 폼 열기 ↗</a></p>`;
+    }
   }
 
   /* ---------- 프로그램 ---------- */
@@ -246,7 +246,7 @@
     renderTimeline(d.settings || {});
     renderNotices(d.notices);
     renderFAQ(d.faq);
-    renderStats(d.settings || {});
+    renderAbstract(d.settings || {});
     renderProgram(d.program);
     if (d.sampleUsed) $("#dataBadge").textContent = "※ 현재 예시 데이터로 표시 중입니다 (마스터 시트 연결 전).";
   });
