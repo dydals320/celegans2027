@@ -11,6 +11,7 @@ window.SAMPLE_DATA = {
     register_url: "https://www.ksmcb.or.kr/",
     abstract_url: "https://forms.gle/",
     deadline_lab: "2026-11-30",
+    abstract_start: "2026-12-01",
     deadline_abstract: "2026-12-14",
     deadline_register: "추후 공지",
     checkin: "1일차 16:00 이후 / 체크아웃 2일차 11:00",

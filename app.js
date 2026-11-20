@@ -142,9 +142,12 @@
 
   /* ---------- 공지 / FAQ ---------- */
   function renderNotices(list) {
+    // 날짜가 오늘보다 뒤인 공지는 그날이 되면 자동으로 나타남 (예약 게시)
+    const t = today();
     const shown = (list || [])
       .filter((n) => String(n["게시"] || "Y").toUpperCase() !== "N" && n["제목"])
-      .sort((a, b) => String(b["날짜"]).localeCompare(String(a["날짜"])));
+      .filter((n) => { const d = parseDate(n["날짜"]); return !d || d <= t; })
+      .sort((a, b) => (parseDate(b["날짜"]) || 0) - (parseDate(a["날짜"]) || 0));
     $("#noticeList").innerHTML = shown.length
       ? shown.map((n) => `<li><time>${esc(n["날짜"])}</time><h3>${esc(n["제목"])}</h3><p>${esc(n["내용"])}</p></li>`).join("")
       : `<li class="empty">아직 공지가 없습니다.</li>`;
@@ -164,6 +167,16 @@
   function renderAbstract(s) {
     const box = $("#absForm");
     const url = String(s.abstract_url || "").trim();
+    // 설정 abstract_start(접수 시작일) 전에는 안내만, deadline_abstract 다음 날부터는 마감 표시
+    const start = parseDate(s.abstract_start), end = parseDate(s.deadline_abstract), t = today();
+    if (start && t < start) {
+      box.innerHTML = `<p class="empty">초록 접수는 <b>${esc(fmtMD(start))}</b>부터 이곳에서 받습니다. (마감 ${esc(fmtMD(end))})</p>`;
+      return;
+    }
+    if (end && t > end) {
+      box.innerHTML = `<p class="empty">초록 접수가 마감되었습니다. (${esc(fmtMD(end))} 마감)</p>`;
+      return;
+    }
     const m = url.match(/^https:\/\/docs\.google\.com\/forms\/[^?#]+/);
     if (m) {
       const src = m[0].replace(/\/(edit|viewform)?$/, "") + "/viewform?embedded=true";
