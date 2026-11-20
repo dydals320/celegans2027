@@ -176,7 +176,17 @@
 
   /* ---------- 프로그램 ---------- */
   const TYPE_CLASS = { 세션: "t-session", 발표: "t-talk", 기조강연: "t-keynote", 휴식: "t-break", 식사: "t-meal", 포스터: "t-poster" };
-  function renderProgram(rows) {
+  // 설정 탭 program_open / stay_open 이 Y일 때만 공개 (없거나 N이면 '추후 공개')
+  const isOpen = (v) => String(v || "").trim().toUpperCase() === "Y";
+  const TBA = (msg) => `<div class="tba-box"><b>추후 공개</b><p>${esc(msg)}</p></div>`;
+
+  function renderProgram(rows, s) {
+    if (!isOpen(s.program_open)) {
+      $("#dayTabs").innerHTML = "";
+      $("#programList").innerHTML = TBA(`프로그램은 초록 접수(마감 ${fmtMD(parseDate(s.deadline_abstract))})가 끝난 뒤 공개합니다.`);
+      return;
+    }
+    $("#printBtn").hidden = false;
     rows = (rows || []).filter((r) => r["제목"]);
     const days = [...new Set(rows.map((r) => r["일차"]))].sort((a, b) => a - b);
     const tabs = $("#dayTabs"), list = $("#programList");
@@ -247,7 +257,10 @@
     renderNotices(d.notices);
     renderFAQ(d.faq);
     renderAbstract(d.settings || {});
-    renderProgram(d.program);
+    renderProgram(d.program, d.settings || {});
+    const stayOpen = isOpen((d.settings || {}).stay_open);
+    $("#stayDetail").hidden = !stayOpen;
+    $("#stayTBA").hidden = stayOpen;
     if (d.sampleUsed) $("#dataBadge").textContent = "※ 현재 예시 데이터로 표시 중입니다 (마스터 시트 연결 전).";
   });
 })();

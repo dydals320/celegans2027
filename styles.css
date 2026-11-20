@@ -402,3 +402,10 @@ a.btn-small { text-decoration: none; }
 .abs-alt { margin: 0; padding: 10px 16px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); text-align: right; }
 .abs-alt a { color: var(--navy); }
 @media (max-width: 640px) { .abs-form iframe { height: 1700px; } }
+
+/* ---------- 추후 공개 ---------- */
+.tba-box { padding: 28px 24px; text-align: center; color: var(--ink-2); }
+.tba-box b { display: inline-block; font-family: var(--f-serif-ko); font-size: 18px; color: var(--navy); border: 1px solid var(--navy); border-radius: 999px; padding: 4px 16px; margin-bottom: 10px; }
+.tba-box p { margin: 0 auto; max-width: 34em; font-size: 15px; }
+.stay .tba-box { text-align: left; padding: 4px 0 0; }
+.stay[hidden] { display: none; }
